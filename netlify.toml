@@ -20,3 +20,10 @@
   # Vite 8 verlangt Node ^20.19 || >=22.12 — ohne Pin hängt der Build an der
   # Default-Version des Build-Images.
   NODE_VERSION = "22"
+
+# Ohne diese Regel liefert Netlify das Manifest als application/octet-stream aus,
+# weil die Endung .webmanifest nicht in der MIME-Tabelle steht.
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
